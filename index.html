@@ -4,90 +4,217 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kisaruupshop</title>
+
 <style>
-body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#ff9acb,#ff4fa3);margin:0;min-height:100vh}
-.container{max-width:480px;margin:auto;padding:20px}
-.card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
-h1{text-align:center;color:#d81b60;margin-bottom:15px}
-input{width:100%;padding:12px;margin:7px 0;border:2px solid #f48fb1;border-radius:12px}
-#perfilBtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0}
-#perfilBtns button{padding:8px 14px;border:none;border-radius:20px;background:#f8bbd0;color:#880e4f;font-weight:bold}
-#perfilBtns button.active{background:#d81b60;color:#fff}
-#salida{background:#fff0f6;border:2px dashed #f48fb1;border-radius:14px;padding:15px;font-family:monospace;font-size:.9rem;white-space:pre-wrap;color:#6a0030}
-#copiarBtn{width:100%;padding:14px;background:#d81b60;color:#fff;border:none;border-radius:25px;font-size:1.1rem;margin-top:15px}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff9acb,#ff4fa3);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  width:100%;
+  max-width:520px;
+  background:#fff0f6;
+  border-radius:25px;
+  padding:25px 15px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.25);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+h1{
+  text-align:center;
+  color:#c2185b;
+  margin-bottom:15px;
+  text-shadow:1px 1px 3px #ffc1e3;
+}
+
+.guia{
+  width:90%;
+  background:#ffd6eb;
+  padding:15px;
+  border-radius:18px;
+  margin-bottom:15px;
+  color:#880e4f;
+  box-shadow:inset 0 0 10px #ffb3d9;
+  font-size:0.95rem;
+}
+
+input{
+  display:block;
+  width:90%;
+  max-width:420px;
+  margin:10px auto;
+  padding:14px;
+  border-radius:16px;
+  border:2px solid #ff80b5;
+  font-size:1rem;
+  background:#fff;
+  box-sizing:border-box;
+}
+
+input:focus{
+  outline:none;
+  border-color:#c2185b;
+  background:#ffe6f2;
+}
+
+#perfilBtns{
+  width:90%;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:15px 0;
+}
+
+#perfilBtns button{
+  padding:8px 16px;
+  border:none;
+  border-radius:20px;
+  background:#f8bbd0;
+  color:#880e4f;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+#perfilBtns button.active{
+  background:#c2185b;
+  color:white;
+  box-shadow:0 5px 15px rgba(194,24,91,0.5);
+}
+
+#salida{
+  width:90%;
+  background:#ffffff;
+  padding:15px;
+  border-radius:18px;
+  min-height:200px;
+  white-space:pre-wrap;
+  margin-top:10px;
+  font-family:monospace;
+  color:#880e4f;
+  border:2px dashed #ff80b5;
+  box-sizing:border-box;
+}
+
+#copiarBtn{
+  width:90%;
+  margin-top:18px;
+  padding:14px;
+  background:#c2185b;
+  color:white;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(194,24,91,0.4);
+  transition:.3s;
+}
+
+#copiarBtn:hover{
+  background:#880e4f;
+}
 </style>
 </head>
 
 <body>
-<div class="container">
-<div class="card">
-<h1>💖 Kisaruupshop 💖</h1>
 
-<input id="plataforma" placeholder="Plataforma (n,m,p,pr,v,va,c,ca,d,s,sf,y)">
+<div class="container">
+
+<h1>🫧 Kisaruupshop 🫧</h1>
+
+<div class="guia">
+<b>Guía de uso:</b><br>
+n: Netflix<br>
+m: Max<br>
+p: Prime Video<br>
+pr: Paramount+<br>
+v: Vix<br>
+c: Crunchyroll<br>
+ca: Crunchyroll Anual (6 meses)<br>
+d: Disney+<br>
+s: Spotify<br>
+sf: Spotify Familiar<br>
+y: YouTube<br><br>
+En "Tipo", escribe <b>c</b> para COMPLETA.
+</div>
+
+<input id="plataforma" placeholder="Plataforma">
 <input id="correo" placeholder="Correo">
 <input id="contrasena" placeholder="Contraseña">
-<input id="tipo" placeholder="Tipo ('c' = Completa)">
+<input id="tipo" placeholder="Tipo (c = Completa)">
 
 <div id="perfilBtns"></div>
+
 <div id="salida"></div>
-<button id="copiarBtn">📋 Copiar</button>
-</div>
+
+<button id="copiarBtn">📋 Copiar todo</button>
+
 </div>
 
 <script>
 const plataformas={
-n:{nombre:"NETFLIX",garantia:"25"},
-m:{nombre:"MAX",garantia:"25"},
-p:{nombre:"PRIME VIDEO",garantia:"25"},
-pr:{nombre:"PARAMOUNT+",garantia:"25"},
-v:{nombre:"VIX",garantia:"25"},
-va:{nombre:"VIX ANUAL",garantia:"6"},
-c:{nombre:"CRUNCHYROLL",garantia:"25"},
-ca:{nombre:"CRUNCHYROLL ANUAL",garantia:"6"},
-d:{nombre:"DISNEY+",garantia:"25"},
-s:{nombre:"SPOTIFY",garantia:"25"},
-sf:{nombre:"SPOTIFY FAMILIAR",garantia:"25"},
-y:{nombre:"YOUTUBE",garantia:"25"}
+n:"NETFLIX",
+m:"MAX",
+p:"PRIME VIDEO",
+pr:"PARAMOUNT+",
+v:"VIX",
+c:"CRUNCHYROLL",
+ca:"CRUNCHYROLL ANUAL",
+d:"DISNEY+",
+s:"SPOTIFY",
+sf:"SPOTIFY FAMILIAR",
+y:"YOUTUBE"
 };
 
 let perfil="P1";
 
-function crearPerfiles(n){
+function crearPerfiles(){
 perfilBtns.innerHTML="";
-for(let i=1;i<=n;i++){
+for(let i=1;i<=5;i++){
 const b=document.createElement("button");
 b.textContent="P"+i;
 if(i===1)b.classList.add("active");
-b.onclick=()=>{document.querySelectorAll("#perfilBtns button").forEach(x=>x.classList.remove("active"));b.classList.add("active");perfil="P"+i;generar();};
+b.onclick=()=>{
+document.querySelectorAll("#perfilBtns button").forEach(x=>x.classList.remove("active"));
+b.classList.add("active");
+perfil="P"+i;
+generar();
+};
 perfilBtns.appendChild(b);
 }
 }
 
 function generar(){
 const p=plataforma.value.toLowerCase();
-if(!plataformas[p]||!correo.value||!contrasena.value){salida.textContent="";return;}
+if(!plataformas[p]||!correo.value||!contrasena.value){
+salida.textContent="";
+return;
+}
+
 const perfilTxt=tipo.value.toLowerCase()==="c"?"COMPLETA":perfil;
-const fecha=new Date().toLocaleDateString("es-ES",{day:"2-digit",month:"short",year:"numeric"}).replace(".","");
-const garantiaTxt=plataformas[p].garantia==="6"?"6 MESES DE GARANTIA":"25 DIAS DE GARANTIA";
+const fecha=new Date().toLocaleDateString("es-ES");
 
 salida.textContent=
 "╔══════🌙 🫧🄺🄸🅂🄰🅁🅄🅄🄿 🅂🄷🄾🄿🫧 🌙══════╗\n"+
-"✨ "+plataformas[p].nombre+" • "+fecha+" ✨\n"+
+"✨ "+plataformas[p]+" • "+fecha+" ✨\n"+
 "💌 Correo 💌: "+correo.value+"\n"+
 "🔐 Contraseña 🔐: "+contrasena.value+"\n"+
 "👤 Perfil 👤: "+perfilTxt+"\n"+
-"╠══════════🫧 𝓡𝓮𝓰𝓵𝓪𝓼 𝓭𝓮 𝓖𝓪𝓻𝓪𝓷𝓽í𝓪 🫧═══════════╣\n"+
-"⚠️ REPORTAR SIN VERIFICAR O REPORTAR UNA CUENTA QUE ‼️SÍ‼️ FUNCIONA ANULA LA GARANTÍA ⚠️\n"+
-"⏳ CONFIRMA TU ACCESO EN 10 MINUTOS, DESPUES DE ESTE TIEMPO ENTRARÁ A REPORTE 🚨\n"+
-"🌸 "+garantiaTxt+" DESDE EL ACCESO\n"+
-"💖 NO CAMBIAR CONTRASEÑA, NOMBRE O CORREO NI DATOS DEL PERFIL SIN PERMISO\n"+
-"🍒 DUDAS, CÓDIGOS, REPORTES: https://chat.whatsapp.com/IZ0sHICbugFChKBJjMUWI7\n"+
-"╚══════════🐾 𝓖𝓻𝓪𝓬𝓲𝓪𝓼 𝓹𝓸𝓻 𝓽𝓾 𝓬𝓸𝓶𝓹𝓻𝓪 🐾══════════╝";
+"╚══════════🐾 Gracias por tu compra 🐾══════════╝";
 }
 
-document.querySelectorAll("input").forEach(i=>i.oninput=()=>{crearPerfiles(plataforma.value==="d"?7:5);generar();});
+document.querySelectorAll("input").forEach(i=>i.oninput=generar);
 copiarBtn.onclick=()=>navigator.clipboard.writeText(salida.textContent);
-crearPerfiles(5);
+
+crearPerfiles();
 </script>
+
 </body>
 </html>
