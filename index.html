@@ -27,6 +27,7 @@ input{display:block;width:90%;max-width:420px;margin:10px auto;padding:14px;bord
 <div class="guia">
 <b>Guía:</b><br>
 n: Netflix<br>
+np: Netflix Privado<br>
 m: Max<br>
 p: Prime Video<br>
 pr: Paramount+<br>
@@ -59,6 +60,7 @@ En "Tipo", escribe <b>c</b> para COMPLETA.
 <script>
 const plataformas={
 n:"NETFLIX",
+np:"NETFLIX PRIVADO",
 m:"MAX",
 p:"PRIME VIDEO",
 pr:"PARAMOUNT+",
@@ -81,8 +83,7 @@ perfilBtns.innerHTML="";
 
 const p=plataforma.value.trim().toLowerCase();
 
-if(p==="s" || p==="s3"){
-perfil="INDIVIDUAL";
+if(p==="s" || p==="s3" || p==="np"){
 perfilBtns.style.display="none";
 return;
 }
@@ -117,7 +118,12 @@ perfilBtns.appendChild(b);
 function generar(){
 const p=plataforma.value.trim().toLowerCase();
 
-if(!plataformas[p] || !correo.value || !contrasena.value){
+if(!plataformas[p] || !correo.value){
+salida.textContent="";
+return;
+}
+
+if(p!=="np" && !contrasena.value){
 salida.textContent="";
 return;
 }
@@ -127,6 +133,7 @@ const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","
 const fechaTxt=`${String(f.getDate()).padStart(2,"0")} ${meses[f.getMonth()]} ${f.getFullYear()}`;
 
 let lineaPerfil=`🌸 PERFIL: ${perfil.replace("P","")}`;
+let lineaContrasena=`🔐 ${contrasena.value}`;
 
 if(tipo.value.trim().toLowerCase()==="c"){
 lineaPerfil="🌸 COMPLETA";
@@ -136,10 +143,18 @@ if(p==="s" || p==="s3"){
 lineaPerfil="🌸 INDIVIDUAL";
 }
 
+if(p==="np"){
+lineaPerfil="🌸 PERFIL: 1";
+lineaContrasena="🔐 Acceso por código";
+}
+
 let dispositivo="Máximo 1 dispositivo por *perfil*";
 
 if(p==="s" || p==="s3"){
 dispositivo="Máximo 1 dispositivo";
+}
+else if(p==="np"){
+dispositivo="Máximo 1 dispositivo por *perfil*";
 }
 else if(tipo.value.trim().toLowerCase()==="c"){
 
@@ -169,7 +184,7 @@ salida.textContent=`꧁🌸Sarita Shop 🌸꧂
 · · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
 ❤️ ${plataformas[p]} ❤️
 💌 ${correo.value}
-🔐 ${contrasena.value}
+${lineaContrasena}
 ${lineaPerfil}
 📤 Entrega: ${fechaTxt}
 · · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
