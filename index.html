@@ -3,121 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kisaruupshop</title>
+<title>☾ Sarita Shop Streaming ☾</title>
 
 <style>
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#ff9acb,#ff4fa3);
-  display:flex;
-  justify-content:center;
-  padding:20px;
-}
-
-.container{
-  width:100%;
-  max-width:520px;
-  background:#fff0f6;
-  border-radius:25px;
-  padding:25px 15px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.25);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-h1{
-  text-align:center;
-  color:#c2185b;
-  margin-bottom:15px;
-}
-
-.guia{
-  width:90%;
-  background:#ffd6eb;
-  padding:15px;
-  border-radius:18px;
-  margin-bottom:15px;
-  color:#880e4f;
-  font-size:0.95rem;
-}
-
-input{
-  display:block;
-  width:90%;
-  max-width:420px;
-  margin:10px auto;
-  padding:14px;
-  border-radius:16px;
-  border:2px solid #ff80b5;
-  font-size:1rem;
-  background:#fff;
-  box-sizing:border-box;
-}
-
-input:focus{
-  outline:none;
-  border-color:#c2185b;
-  background:#ffe6f2;
-}
-
-#perfilBtns{
-  width:90%;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin:15px 0;
-}
-
-#perfilBtns button{
-  padding:8px 16px;
-  border:none;
-  border-radius:20px;
-  background:#f8bbd0;
-  color:#880e4f;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-#perfilBtns button.active{
-  background:#c2185b;
-  color:white;
-}
-
-#salida{
-  width:90%;
-  background:#ffffff;
-  padding:15px;
-  border-radius:18px;
-  min-height:200px;
-  white-space:pre-wrap;
-  margin-top:10px;
-  font-family:monospace;
-  color:#880e4f;
-  border:2px dashed #ff80b5;
-  box-sizing:border-box;
-}
-
-#copiarBtn{
-  width:90%;
-  margin-top:18px;
-  padding:14px;
-  background:#c2185b;
-  color:white;
-  border:none;
-  border-radius:30px;
-  font-size:1rem;
-  cursor:pointer;
-}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#ff9acb,#ff4fa3);display:flex;justify-content:center;padding:20px}
+.container{width:100%;max-width:520px;background:#fff0f6;border-radius:25px;padding:25px 15px;box-shadow:0 15px 35px rgba(0,0,0,0.25);display:flex;flex-direction:column;align-items:center}
+h1{text-align:center;color:#c2185b;margin-bottom:15px;font-size:1.6rem}
+.guia{width:90%;background:#ffd6eb;padding:15px;border-radius:18px;margin-bottom:15px;color:#880e4f;font-size:0.95rem}
+input{display:block;width:90%;max-width:420px;margin:10px auto;padding:14px;border-radius:16px;border:2px solid #ff80b5;font-size:1rem;box-sizing:border-box}
+#perfilBtns{width:90%;display:flex;justify-content:center;gap:10px;margin:15px 0;flex-wrap:wrap}
+#perfilBtns button{padding:8px 16px;border:none;border-radius:20px;background:#f8bbd0;color:#880e4f;font-weight:bold;cursor:pointer}
+#perfilBtns button.active{background:#c2185b;color:white}
+#salida{width:90%;background:#ffffff;padding:15px;border-radius:18px;min-height:220px;white-space:pre-wrap;font-family:monospace;color:#880e4f;border:2px dashed #ff80b5}
+#copiarBtn{width:90%;margin-top:18px;padding:14px;background:#c2185b;color:white;border:none;border-radius:30px;font-size:1rem;cursor:pointer}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<h1>🫧 Kisaruupshop 🫧</h1>
+<h1>࣪ ִֶָ☾. 𝑺𝒂𝒓𝒊𝒕𝒂 𝑺𝒉𝒐𝒑 𝑺𝒕𝒓𝒆𝒂𝒎𝒊𝒏𝒈 ࣪ ִֶָ☾.</h1>
 
 <div class="guia">
 <b>Guía:</b><br>
@@ -126,22 +31,27 @@ m: Max<br>
 p: Prime Video<br>
 pr: Paramount+<br>
 v: Vix<br>
-c: Crunchyroll<br>
-ca: Crunchyroll Anual (6 meses)<br>
+va: Vix Anual<br>
 d: Disney+<br>
-s: Spotify<br>
+c: ChatGPT<br>
+cr: Crunchyroll<br>
+s: Spotify Individual<br>
+s3: Spotify 3 meses Individual<br>
 sf: Spotify Familiar<br>
-y: YouTube<br><br>
+yf: YouTube Familiar<br>
+fx: Fox One<br>
 En "Tipo", escribe <b>c</b> para COMPLETA.
 </div>
 
-<input id="plataforma" placeholder="Plataforma">
+<input id="plataforma" placeholder="Plataforma / abreviatura">
 <input id="correo" placeholder="Correo">
 <input id="contrasena" placeholder="Contraseña">
-<input id="tipo" placeholder="Tipo (c = Completa)">
+<input id="tipo" placeholder="Tipo">
 
 <div id="perfilBtns"></div>
+
 <div id="salida"></div>
+
 <button id="copiarBtn">📋 Copiar todo</button>
 
 </div>
@@ -153,65 +63,147 @@ m:"MAX",
 p:"PRIME VIDEO",
 pr:"PARAMOUNT+",
 v:"VIX",
-c:"CRUNCHYROLL",
-ca:"CRUNCHYROLL ANUAL",
+va:"VIX ANUAL",
 d:"DISNEY+",
+c:"CHATGPT",
+cr:"CRUNCHYROLL",
 s:"SPOTIFY",
+s3:"SPOTIFY 3 MESES",
 sf:"SPOTIFY FAMILIAR",
-y:"YOUTUBE"
+yf:"YOUTUBE FAMILIAR",
+fx:"FOX ONE"
 };
 
 let perfil="P1";
 
 function crearPerfiles(){
 perfilBtns.innerHTML="";
+
+const p=plataforma.value.trim().toLowerCase();
+
+if(p==="s" || p==="s3"){
+perfil="INDIVIDUAL";
+perfilBtns.style.display="none";
+return;
+}
+
+if(tipo.value.trim().toLowerCase()==="c"){
+perfil="COMPLETA";
+perfilBtns.style.display="none";
+return;
+}
+
+perfilBtns.style.display="flex";
+
 for(let i=1;i<=5;i++){
 const b=document.createElement("button");
 b.textContent="P"+i;
-if(i===1)b.classList.add("active");
+
+if(perfil==="P"+i){
+b.classList.add("active");
+}
+
 b.onclick=()=>{
 document.querySelectorAll("#perfilBtns button").forEach(x=>x.classList.remove("active"));
 b.classList.add("active");
-perfil="P"+i;
+perfil=b.textContent;
 generar();
 };
+
 perfilBtns.appendChild(b);
 }
 }
 
 function generar(){
-const p=plataforma.value.toLowerCase();
-if(!plataformas[p]||!correo.value||!contrasena.value){
+const p=plataforma.value.trim().toLowerCase();
+
+if(!plataformas[p] || !correo.value || !contrasena.value){
 salida.textContent="";
 return;
 }
 
-const perfilTxt=tipo.value.toLowerCase()==="c"?"COMPLETA":perfil;
+const f=new Date();
+const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const fechaTxt=`${String(f.getDate()).padStart(2,"0")} ${meses[f.getMonth()]} ${f.getFullYear()}`;
 
-const fecha=new Date();
-const meses=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
-const fechaTxt=`${fecha.getDate()} ${meses[fecha.getMonth()]} ${fecha.getFullYear()}`;
+let lineaPerfil=`🌸 PERFIL: ${perfil.replace("P","")}`;
 
-let garantia="25 DÍAS DE GARANTÍA DESDE EL ACCESO";
-if(p==="ca") garantia="6 MESES DE GARANTÍA DESDE EL ACCESO";
-
-salida.textContent=
-`╔══════🌙 🫧🄺🄸🅂🄰🅁🅄🅄🄿 🅂🄷🄾🄿🫧 🌙══════╗
-✨ ${plataformas[p]} • ${fechaTxt} ✨
-💌 Correo 💌: ${correo.value}
-🔐 Contraseña 🔐: ${contrasena.value}
-👤 Perfil 👤: ${perfilTxt}
-╠══════════🫧 𝓡𝓮𝓰𝓵𝓪𝓼 𝓭𝓮 𝓖𝓪𝓻𝓪𝓷𝓽í𝓪 🫧═══════════╣
-⚠️ REPORTAR SIN VERIFICAR O REPORTAR UNA CUENTA QUE ‼️SÍ‼️ FUNCIONA ANULA LA GARANTÍA ⚠️
-⏳ CONFIRMA TU ACCESO EN 10 MINUTOS, DESPUÉS DE ESTE TIEMPO ENTRARÁ A REPORTE 🚨
-🌸 ${garantia}
-💖 NO CAMBIAR CONTRASEÑA, NOMBRE O CORREO NI DATOS DEL PERFIL SIN PERMISO
-🍒 DUDAS, CÓDIGOS, REPORTES: https://chat.whatsapp.com/IZ0sHICbugFChKBJjMUWI7
-╚══════════🐾 𝓖𝓻𝓪𝓬𝓲𝓪𝓼 𝓹𝓸𝓻 𝓽𝓾 𝓬𝓸𝓶𝓹𝓻𝓪 🐾══════════╝`;
+if(tipo.value.trim().toLowerCase()==="c"){
+lineaPerfil="🌸 COMPLETA";
 }
 
-document.querySelectorAll("input").forEach(i=>i.oninput=generar);
-copiarBtn.onclick=()=>navigator.clipboard.writeText(salida.textContent);
+if(p==="s" || p==="s3"){
+lineaPerfil="🌸 INDIVIDUAL";
+}
+
+let dispositivo="Máximo 1 dispositivo por *perfil*";
+
+if(p==="s" || p==="s3"){
+dispositivo="Máximo 1 dispositivo";
+}
+else if(tipo.value.trim().toLowerCase()==="c"){
+
+if(p==="d" || p==="c"){
+dispositivo="Máximo 7 dispositivos por *completa*";
+}
+else if(p==="pr" || p==="p"){
+dispositivo="Máximo 6 dispositivos por *completa*";
+}
+else{
+dispositivo="Máximo 5 dispositivos por *completa*";
+}
+
+}
+
+let garantia="25 días de garantía";
+
+if(p==="va"){
+garantia="6 meses de garantía";
+}
+
+if(p==="s3"){
+garantia="70 días de garantía";
+}
+
+salida.textContent=`꧁🌸Sarita Shop 🌸꧂
+· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
+❤️ ${plataformas[p]} ❤️
+💌 ${correo.value}
+🔐 ${contrasena.value}
+${lineaPerfil}
+📤 Entrega: ${fechaTxt}
+· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
+🌸Códigos🌸
+https://chat.whatsapp.com/D3RNe9b5EyJLbg1gQlLWyt
+· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
+🌸REPORTES🌸
+https://chat.whatsapp.com/BcQpWkT4MOF7Yf8zShKgw5?s=cl&p=a&ilr=0
+· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
+• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Confirma tu acceso en 10 minutos 
+• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Manda captura que ya accediste *(o no habrá garantía)*
+• ⁠⁠⁠⁠⁠⁠⁠₊⊹ No cambiar correo ni contraseña  
+• ⁠⁠⁠⁠⁠⁠⁠₊⊹ No modificar facturación  
+• ⁠⁠⁠⁠⁠⁠⁠₊⊹ ${dispositivo}  
+• ⁠⁠⁠⁠⁠⁠⁠₊⊹ ${garantia}
+• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Respuesta de reportes de *24 a 72 hrs*
+· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
+🌸 DUDAS 🌸
+*Con el admin en turno* por privado no al grupo.
+· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·`;
+}
+
+document.querySelectorAll("input").forEach(i=>{
+i.oninput=()=>{
+crearPerfiles();
+generar();
+};
+});
+
+copiarBtn.onclick=()=>{
+navigator.clipboard.writeText(salida.textContent);
+copiarBtn.textContent="✅ Copiado";
+setTimeout(()=>copiarBtn.textContent="📋 Copiar todo",1500);
+};
 
 crearPerfiles();
 </script>
