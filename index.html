@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,6 +44,9 @@ s3: Spotify 3 meses Individual<br>
 sf: Spotify Familiar<br>
 yf: YouTube Familiar<br>
 fx: Fox One<br>
+i: IPTV<br>
+f: Flujo TV<br>
+a: Apple TV<br>
 En "Tipo", escribe <b>c</b> para COMPLETA.
 </div>
 
@@ -73,10 +79,18 @@ s:"SPOTIFY",
 s3:"SPOTIFY 3 MESES",
 sf:"SPOTIFY FAMILIAR",
 yf:"YOUTUBE FAMILIAR",
-fx:"FOX ONE"
+fx:"FOX ONE",
+i:"IPTV",
+f:"FLUJO TV",
+a:"APPLE TV"
 };
 
 let perfil="P1";
+
+function cantidadPerfiles(p){
+if(p==="f") return 3;
+return 5;
+}
 
 function crearPerfiles(){
 perfilBtns.innerHTML="";
@@ -96,7 +110,13 @@ return;
 
 perfilBtns.style.display="flex";
 
-for(let i=1;i<=5;i++){
+const total=cantidadPerfiles(p);
+
+if(perfil==="COMPLETA"){
+perfil="P1";
+}
+
+for(let i=1;i<=total;i++){
 const b=document.createElement("button");
 b.textContent="P"+i;
 
@@ -156,6 +176,13 @@ dispositivo="Máximo 1 dispositivo";
 else if(p==="np"){
 dispositivo="Máximo 1 dispositivo por *perfil*";
 }
+else if(p==="f"){
+if(tipo.value.trim().toLowerCase()==="c"){
+dispositivo="Máximo 3 dispositivos por *completa*";
+}else{
+dispositivo="Máximo 3 dispositivos por *perfil*";
+}
+}
 else if(tipo.value.trim().toLowerCase()==="c"){
 
 if(p==="d" || p==="c"){
@@ -163,6 +190,9 @@ dispositivo="Máximo 7 dispositivos por *completa*";
 }
 else if(p==="pr" || p==="p"){
 dispositivo="Máximo 6 dispositivos por *completa*";
+}
+else if(p==="i" || p==="a"){
+dispositivo="Máximo 5 dispositivos por *completa*";
 }
 else{
 dispositivo="Máximo 5 dispositivos por *completa*";
@@ -189,10 +219,10 @@ ${lineaPerfil}
 📤 Entrega: ${fechaTxt}
 · · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
 🌸Códigos🌸
-https://chat.whatsapp.com/D3RNe9b5EyJLbg1gQlLWyt
+https://chat.whatsapp.com/FLv1Dol35LQCMGhf9oVDnV
 · · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
 🌸REPORTES🌸
-https://chat.whatsapp.com/BcQpWkT4MOF7Yf8zShKgw5?s=cl&p=a&ilr=0
+https://saritashop.nvg.mx/
 · · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
 • ⁠⁠⁠⁠⁠⁠⁠₊⊹ Confirma tu acceso en 10 minutos 
 • ⁠⁠⁠⁠⁠⁠⁠₊⊹ Manda captura que ya accediste *(o no habrá garantía)*
