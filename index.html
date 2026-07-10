@@ -1,257 +1,540 @@
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>☾ Sarita Shop Streaming ☾</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarita Shop</title>
 <style>
-body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#ff9acb,#ff4fa3);display:flex;justify-content:center;padding:20px}
-.container{width:100%;max-width:520px;background:#fff0f6;border-radius:25px;padding:25px 15px;box-shadow:0 15px 35px rgba(0,0,0,0.25);display:flex;flex-direction:column;align-items:center}
-h1{text-align:center;color:#c2185b;margin-bottom:15px;font-size:1.6rem}
-.guia{width:90%;background:#ffd6eb;padding:15px;border-radius:18px;margin-bottom:15px;color:#880e4f;font-size:0.95rem}
-input{display:block;width:90%;max-width:420px;margin:10px auto;padding:14px;border-radius:16px;border:2px solid #ff80b5;font-size:1rem;box-sizing:border-box}
-#perfilBtns{width:90%;display:flex;justify-content:center;gap:10px;margin:15px 0;flex-wrap:wrap}
-#perfilBtns button{padding:8px 16px;border:none;border-radius:20px;background:#f8bbd0;color:#880e4f;font-weight:bold;cursor:pointer}
-#perfilBtns button.active{background:#c2185b;color:white}
-#salida{width:90%;background:#ffffff;padding:15px;border-radius:18px;min-height:220px;white-space:pre-wrap;font-family:monospace;color:#880e4f;border:2px dashed #ff80b5}
-#copiarBtn{width:90%;margin-top:18px;padding:14px;background:#c2185b;color:white;border:none;border-radius:30px;font-size:1rem;cursor:pointer}
+:root{
+  --rosa:#ff4fa3;
+  --morado:#9b59dc;
+  --moradoOscuro:#71399b;
+  --texto:#56316c;
+  --borde:#decfe8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--texto);
+  background:linear-gradient(180deg,#fff,#fff5fb);
+}
+.app{max-width:1400px;margin:auto;background:#fff;min-height:100vh}
+.header{
+  text-align:center;
+  padding:28px 18px;
+  border-bottom:1px solid #eee2f4;
+}
+.header h1{margin:0;color:var(--moradoOscuro);font-size:clamp(2rem,5vw,4rem)}
+.header p{margin:8px 0 0;color:#8a6a9b;font-weight:700}
+.layout{
+  display:grid;
+  grid-template-columns:340px minmax(0,1fr);
+  gap:24px;
+  padding:24px;
+  background:linear-gradient(135deg,#fbf5ff,#fff7fb);
+}
+.card{
+  background:#fff;
+  border:1px solid var(--borde);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 10px 28px rgba(92,48,115,.08);
+}
+.guia{align-self:start}
+h2{margin:0 0 20px;color:var(--moradoOscuro)}
+.guia-lista{display:grid;gap:8px}
+.guia-item{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:10px;
+  align-items:center;
+  padding:9px;
+  border-radius:12px;
+  background:#fcf9ff;
+}
+.codigo{
+  display:grid;
+  place-items:center;
+  min-height:32px;
+  border-radius:9px;
+  background:linear-gradient(135deg,#ffd2e7,#e8d8ff);
+  font-weight:800;
+}
+.nota{
+  margin-top:16px;
+  padding:14px;
+  border-radius:14px;
+  background:#fff0f7;
+  border:1px solid #efccdf;
+  line-height:1.45;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.campo{display:flex;flex-direction:column;gap:8px}
+.full{grid-column:1/-1}
+label{font-weight:800;color:#633a7b}
+input,select{
+  width:100%;
+  min-height:58px;
+  padding:14px 16px;
+  border:2px solid #e0d4e7;
+  border-radius:17px;
+  background:#fff;
+  color:#4f2f60;
+  font-size:16px;
+  outline:none;
+}
+input:focus,select:focus{
+  border-color:var(--morado);
+  box-shadow:0 0 0 4px rgba(155,89,220,.12);
+}
+#perfilBtns{
+  display:none;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:4px;
+}
+.perfil-btn{
+  min-width:58px;
+  height:42px;
+  padding:0 14px;
+  border:2px solid #dbc3e9;
+  border-radius:999px;
+  background:#f8f0ff;
+  color:#6d3d83;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+.perfil-btn.activo{
+  color:#fff;
+  border-color:transparent;
+  background:linear-gradient(90deg,var(--rosa),var(--morado));
+}
+#mensajePerfil{
+  display:block;
+  padding:13px 15px;
+  border:1px dashed #d7b9e6;
+  border-radius:14px;
+  background:#fbf6ff;
+  color:#7d638b;
+  font-weight:700;
+}
+.preview{margin-top:26px}
+#salida{
+  min-height:300px;
+  padding:20px;
+  border:2px dashed #d6b7e5;
+  border-radius:19px;
+  background:#fff;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  line-height:1.55;
+}
+#copiar{
+  display:block;
+  width:min(430px,100%);
+  margin:18px auto 0;
+  padding:15px 20px;
+  border:0;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--rosa),var(--morado));
+  color:#fff;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+}
+@media(max-width:900px){
+  .layout{display:flex;flex-direction:column;padding:14px}
+  .formulario{order:1}
+  .guia{order:2}
+  .form-grid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+}
+@media(max-width:520px){
+  .header{padding:26px 16px}
+  .card{padding:18px;border-radius:20px}
+  #perfilBtns{gap:8px}
+  .perfil-btn{min-width:52px;height:40px;padding:0 11px}
+}
 </style>
 </head>
-
 <body>
-<div class="container">
+<div class="app">
+  <header class="header">
+    <h1>☾ Sarita Shop ☽</h1>
+    <p>Generador de entregas</p>
+  </header>
 
-<h1>࣪ ִֶָ☾. 𝑺𝒂𝒓𝒊𝒕𝒂 𝑺𝒉𝒐𝒑 𝑺𝒕𝒓𝒆𝒂𝒎𝒊𝒏𝒈 ࣪ ִֶָ☾.</h1>
+  <section class="layout">
+    <aside class="card guia">
+      <h2>📖 Abreviaturas</h2>
+      <div class="guia-lista">
+        <div class="guia-item"><span class="codigo">n</span><span>Netflix · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">np</span><span>Netflix Privado</span></div>
+        <div class="guia-item"><span class="codigo">m</span><span>Max · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">p</span><span>Prime Video · 6 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">pr</span><span>Paramount+ · 6 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">v</span><span>Vix · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">va</span><span>Vix Anual · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">d</span><span>Disney+ · 7 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">c</span><span>ChatGPT · 10 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">cr</span><span>Crunchyroll · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">s</span><span>Spotify Individual</span></div>
+        <div class="guia-item"><span class="codigo">s3</span><span>Spotify 3 meses</span></div>
+        <div class="guia-item"><span class="codigo">sf</span><span>Spotify Familiar · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">yf</span><span>YouTube Familiar · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">fx</span><span>Fox One · 5 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">i</span><span>IPTV · completa</span></div>
+        <div class="guia-item"><span class="codigo">f</span><span>Flujo TV · 3 perfiles</span></div>
+        <div class="guia-item"><span class="codigo">a</span><span>Apple TV · 5 perfiles</span></div>
+      </div>
+      <div class="nota">Escribe <b>c</b> en Tipo cuando sea una cuenta completa. IPTV se marca completa automáticamente.</div>
+    </aside>
 
-<div class="guia">
-<b>Guía:</b><br>
-n: Netflix<br>
-np: Netflix Privado<br>
-m: Max<br>
-p: Prime Video<br>
-pr: Paramount+<br>
-v: Vix<br>
-va: Vix Anual<br>
-d: Disney+<br>
-c: ChatGPT<br>
-cr: Crunchyroll<br>
-s: Spotify Individual<br>
-s3: Spotify 3 meses Individual<br>
-sf: Spotify Familiar<br>
-yf: YouTube Familiar<br>
-fx: Fox One<br>
-i: IPTV<br>
-f: Flujo TV<br>
-a: Apple TV<br>
-En "Tipo", escribe <b>c</b> para COMPLETA.
-</div>
+    <main class="card formulario">
+      <h2>✨ Datos de la cuenta</h2>
 
-<input id="plataforma" placeholder="Plataforma / abreviatura">
-<input id="correo" placeholder="Correo">
-<input id="contrasena" placeholder="Contraseña">
-<input id="tipo" placeholder="Tipo">
+      <div class="form-grid">
+        <div class="campo">
+          <label for="plataforma">📺 Plataforma</label>
+          <select id="plataforma">
+            <option value="">Selecciona una plataforma</option>
+            <option value="n">n · Netflix</option>
+            <option value="np">np · Netflix Privado</option>
+            <option value="m">m · Max</option>
+            <option value="p">p · Prime Video</option>
+            <option value="pr">pr · Paramount+</option>
+            <option value="v">v · Vix</option>
+            <option value="va">va · Vix Anual</option>
+            <option value="d">d · Disney+</option>
+            <option value="c">c · ChatGPT</option>
+            <option value="cr">cr · Crunchyroll</option>
+            <option value="s">s · Spotify Individual</option>
+            <option value="s3">s3 · Spotify 3 meses</option>
+            <option value="sf">sf · Spotify Familiar</option>
+            <option value="yf">yf · YouTube Familiar</option>
+            <option value="fx">fx · Fox One</option>
+            <option value="i">i · IPTV</option>
+            <option value="f">f · Flujo TV</option>
+            <option value="a">a · Apple TV</option>
+          </select>
+        </div>
 
-<div id="perfilBtns"></div>
+        <div class="campo">
+          <label for="tipo">🏷️ Tipo</label>
+          <input id="tipo" placeholder="c para completa">
+        </div>
 
-<div id="salida"></div>
+        <div class="campo full">
+          <label for="correo">💌 Correo</label>
+          <input id="correo" placeholder="ejemplo@correo.com">
+        </div>
 
-<button id="copiarBtn">📋 Copiar todo</button>
+        <div class="campo full" id="zonaContrasena">
+          <label for="contrasena">🔐 Contraseña</label>
+          <input id="contrasena" placeholder="Ingresa la contraseña">
+        </div>
 
+        <div class="campo full">
+          <label>🌸 Perfil</label>
+          <div id="perfilBtns">
+            <button type="button" class="perfil-btn" data-perfil="1">P1</button>
+            <button type="button" class="perfil-btn" data-perfil="2">P2</button>
+            <button type="button" class="perfil-btn" data-perfil="3">P3</button>
+            <button type="button" class="perfil-btn" data-perfil="4">P4</button>
+            <button type="button" class="perfil-btn" data-perfil="5">P5</button>
+            <button type="button" class="perfil-btn" data-perfil="6">P6</button>
+            <button type="button" class="perfil-btn" data-perfil="7">P7</button>
+            <button type="button" class="perfil-btn" data-perfil="8">P8</button>
+            <button type="button" class="perfil-btn" data-perfil="9">P9</button>
+            <button type="button" class="perfil-btn" data-perfil="10">P10</button>
+          </div>
+          <div id="mensajePerfil">Selecciona una plataforma para mostrar los perfiles.</div>
+        </div>
+      </div>
+
+      <section class="preview">
+        <h2>📝 Vista previa</h2>
+        <div id="salida">Aquí aparecerá el mensaje generado…</div>
+        <button id="copiar" type="button">📋 Copiar todo</button>
+      </section>
+    </main>
+  </section>
 </div>
 
 <script>
-const plataformas={
-n:"NETFLIX",
-np:"NETFLIX PRIVADO",
-m:"MAX",
-p:"PRIME VIDEO",
-pr:"PARAMOUNT+",
-v:"VIX",
-va:"VIX ANUAL",
-d:"DISNEY+",
-c:"CHATGPT",
-cr:"CRUNCHYROLL",
-s:"SPOTIFY",
-s3:"SPOTIFY 3 MESES",
-sf:"SPOTIFY FAMILIAR",
-yf:"YOUTUBE FAMILIAR",
-fx:"FOX ONE",
-i:"IPTV",
-f:"FLUJO TV",
-a:"APPLE TV"
-};
+(function(){
+  "use strict";
 
-let perfil="P1";
+  var datos = {
+    n:{nombre:"NETFLIX",perfiles:5},
+    np:{nombre:"NETFLIX PRIVADO",perfiles:1,codigo:true},
+    m:{nombre:"MAX",perfiles:5},
+    p:{nombre:"PRIME VIDEO",perfiles:6},
+    pr:{nombre:"PARAMOUNT+",perfiles:6},
+    v:{nombre:"VIX",perfiles:5},
+    va:{nombre:"VIX ANUAL",perfiles:5},
+    d:{nombre:"DISNEY+",perfiles:7},
+    c:{nombre:"CHATGPT",perfiles:10},
+    cr:{nombre:"CRUNCHYROLL",perfiles:5},
+    s:{nombre:"SPOTIFY",perfiles:0,individual:true},
+    s3:{nombre:"SPOTIFY 3 MESES",perfiles:0,individual:true},
+    sf:{nombre:"SPOTIFY FAMILIAR",perfiles:5},
+    yf:{nombre:"YOUTUBE FAMILIAR",perfiles:5},
+    fx:{nombre:"FOX ONE",perfiles:5},
+    i:{nombre:"IPTV",perfiles:0,completa:true},
+    f:{nombre:"FLUJO TV",perfiles:3},
+    a:{nombre:"APPLE TV",perfiles:5}
+  };
 
-function cantidadPerfiles(p){
-if(p==="f") return 3;
-return 5;
-}
+  var plataforma = document.getElementById("plataforma");
+  var tipo = document.getElementById("tipo");
+  var correo = document.getElementById("correo");
+  var contrasena = document.getElementById("contrasena");
+  var zonaContrasena = document.getElementById("zonaContrasena");
+  var perfilBtns = document.getElementById("perfilBtns");
+  var mensajePerfil = document.getElementById("mensajePerfil");
+  var salida = document.getElementById("salida");
+  var copiar = document.getElementById("copiar");
+  var botones = perfilBtns.getElementsByTagName("button");
+  var perfilElegido = 1;
 
-function crearPerfiles(){
-perfilBtns.innerHTML="";
+  function esCompleta(codigo){
+    return codigo === "i" || tipo.value.trim().toLowerCase() === "c";
+  }
 
-const p=plataforma.value.trim().toLowerCase();
+  function pintarBotones(){
+    var codigo = plataforma.value;
+    var info = datos[codigo];
+    var i;
+    var numero;
 
-if(p==="s" || p==="s3" || p==="np"){
-perfilBtns.style.display="none";
-return;
-}
+    if(!info){
+      perfilBtns.style.display = "none";
+      mensajePerfil.style.display = "block";
+      mensajePerfil.textContent = "Selecciona una plataforma para mostrar los perfiles.";
+      return;
+    }
 
-if(tipo.value.trim().toLowerCase()==="c"){
-perfil="COMPLETA";
-perfilBtns.style.display="none";
-return;
-}
+    if(info.codigo){
+      perfilBtns.style.display = "none";
+      mensajePerfil.style.display = "block";
+      mensajePerfil.textContent = "Netflix Privado se entrega como perfil 1 con acceso por código.";
+      perfilElegido = 1;
+      return;
+    }
 
-perfilBtns.style.display="flex";
+    if(info.individual){
+      perfilBtns.style.display = "none";
+      mensajePerfil.style.display = "block";
+      mensajePerfil.textContent = "Esta plataforma se entrega como cuenta individual.";
+      return;
+    }
 
-const total=cantidadPerfiles(p);
+    if(esCompleta(codigo)){
+      perfilBtns.style.display = "none";
+      mensajePerfil.style.display = "block";
+      mensajePerfil.textContent = "La cuenta es completa, por eso no lleva perfil.";
+      return;
+    }
 
-if(perfil==="COMPLETA"){
-perfil="P1";
-}
+    perfilBtns.style.display = "flex";
+    mensajePerfil.style.display = "none";
 
-for(let i=1;i<=total;i++){
-const b=document.createElement("button");
-b.textContent="P"+i;
+    if(perfilElegido > info.perfiles){
+      perfilElegido = 1;
+    }
 
-if(perfil==="P"+i){
-b.classList.add("active");
-}
+    for(i=0;i<botones.length;i++){
+      numero = parseInt(botones[i].getAttribute("data-perfil"),10);
 
-b.onclick=()=>{
-document.querySelectorAll("#perfilBtns button").forEach(x=>x.classList.remove("active"));
-b.classList.add("active");
-perfil=b.textContent;
-generar();
-};
+      if(numero <= info.perfiles){
+        botones[i].style.display = "inline-block";
+      }else{
+        botones[i].style.display = "none";
+      }
 
-perfilBtns.appendChild(b);
-}
-}
+      if(numero === perfilElegido){
+        botones[i].classList.add("activo");
+      }else{
+        botones[i].classList.remove("activo");
+      }
+    }
+  }
 
-function generar(){
-const p=plataforma.value.trim().toLowerCase();
+  function actualizarEspeciales(){
+    var codigo = plataforma.value;
 
-if(!plataformas[p] || !correo.value){
-salida.textContent="";
-return;
-}
+    if(codigo === "np"){
+      zonaContrasena.style.display = "none";
+    }else{
+      zonaContrasena.style.display = "flex";
+    }
 
-if(p!=="np" && !contrasena.value){
-salida.textContent="";
-return;
-}
+    if(codigo === "i"){
+      tipo.value = "c";
+      tipo.readOnly = true;
+    }else{
+      tipo.readOnly = false;
+    }
+  }
 
-const f=new Date();
-const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-const fechaTxt=`${String(f.getDate()).padStart(2,"0")} ${meses[f.getMonth()]} ${f.getFullYear()}`;
+  function generar(){
+    var codigo = plataforma.value;
+    var info = datos[codigo];
+    var email = correo.value.trim();
+    var pass = contrasena.value.trim();
+    var hoy;
+    var meses;
+    var dia;
+    var fecha;
+    var lineaContrasena;
+    var lineaPerfil;
+    var dispositivo;
+    var garantia;
+    var texto;
 
-let lineaPerfil=`🌸 PERFIL: ${perfil.replace("P","")}`;
-let lineaContrasena=`🔐 ${contrasena.value}`;
+    if(!info){
+      salida.textContent = "Selecciona una plataforma.";
+      return;
+    }
 
-if(tipo.value.trim().toLowerCase()==="c"){
-lineaPerfil="🌸 COMPLETA";
-}
+    if(email === ""){
+      salida.textContent = "Escribe el correo para continuar.";
+      return;
+    }
 
-if(p==="s" || p==="s3"){
-lineaPerfil="🌸 INDIVIDUAL";
-}
+    if(codigo !== "np" && pass === ""){
+      salida.textContent = "Escribe la contraseña para continuar.";
+      return;
+    }
 
-if(p==="np"){
-lineaPerfil="🌸 PERFIL: 1";
-lineaContrasena="🔐 Acceso por código";
-}
+    hoy = new Date();
+    meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    dia = hoy.getDate();
+    if(dia < 10){dia = "0" + dia;}
+    fecha = dia + " " + meses[hoy.getMonth()] + " " + hoy.getFullYear();
 
-let dispositivo="Máximo 1 dispositivo por *perfil*";
+    lineaContrasena = "🔐 " + pass;
+    lineaPerfil = "🌸 PERFIL: " + perfilElegido;
 
-if(p==="s" || p==="s3"){
-dispositivo="Máximo 1 dispositivo";
-}
-else if(p==="np"){
-dispositivo="Máximo 1 dispositivo por *perfil*";
-}
-else if(p==="f"){
-if(tipo.value.trim().toLowerCase()==="c"){
-dispositivo="Máximo 3 dispositivos por *completa*";
-}else{
-dispositivo="Máximo 3 dispositivos por *perfil*";
-}
-}
-else if(tipo.value.trim().toLowerCase()==="c"){
+    if(esCompleta(codigo)){
+      lineaPerfil = "🌸 COMPLETA";
+    }
 
-if(p==="d" || p==="c"){
-dispositivo="Máximo 7 dispositivos por *completa*";
-}
-else if(p==="pr" || p==="p"){
-dispositivo="Máximo 6 dispositivos por *completa*";
-}
-else if(p==="i" || p==="a"){
-dispositivo="Máximo 5 dispositivos por *completa*";
-}
-else{
-dispositivo="Máximo 5 dispositivos por *completa*";
-}
+    if(info.individual){
+      lineaPerfil = "🌸 INDIVIDUAL";
+    }
 
-}
+    if(codigo === "np"){
+      lineaContrasena = "🔐 Acceso por código";
+      lineaPerfil = "🌸 PERFIL: 1";
+    }
 
-let garantia="25 días de garantía";
+    dispositivo = "Máximo 1 dispositivo por *perfil*";
 
-if(p==="va"){
-garantia="6 meses de garantía";
-}
+    if(info.individual){
+      dispositivo = "Máximo 1 dispositivo";
+    }else if(codigo === "f"){
+      dispositivo = esCompleta(codigo)
+        ? "Máximo 3 dispositivos por *completa*"
+        : "Máximo 3 dispositivos por *perfil*";
+    }else if(esCompleta(codigo)){
+      if(codigo === "d" || codigo === "c"){
+        dispositivo = "Máximo 7 dispositivos por *completa*";
+      }else if(codigo === "p" || codigo === "pr"){
+        dispositivo = "Máximo 6 dispositivos por *completa*";
+      }else if(codigo === "i"){
+        dispositivo = "Máximo 3 dispositivos por *completa*";
+      }else{
+        dispositivo = "Máximo 5 dispositivos por *completa*";
+      }
+    }
 
-if(p==="s3"){
-garantia="70 días de garantía";
-}
+    garantia = "25 días de garantía";
+    if(codigo === "va"){garantia = "6 meses de garantía";}
+    if(codigo === "s3"){garantia = "70 días de garantía";}
 
-salida.textContent=`꧁🌸Sarita Shop 🌸꧂
-· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
-❤️ ${plataformas[p]} ❤️
-💌 ${correo.value}
-${lineaContrasena}
-${lineaPerfil}
-📤 Entrega: ${fechaTxt}
-· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
-🌸Códigos🌸
-https://chat.whatsapp.com/FLv1Dol35LQCMGhf9oVDnV
-· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
-🌸REPORTES🌸
-https://saritashop.nvg.mx/
-· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
-• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Confirma tu acceso en 10 minutos 
-• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Manda captura que ya accediste *(o no habrá garantía)*
-• ⁠⁠⁠⁠⁠⁠⁠₊⊹ No cambiar correo ni contraseña  
-• ⁠⁠⁠⁠⁠⁠⁠₊⊹ No modificar facturación  
-• ⁠⁠⁠⁠⁠⁠⁠₊⊹ ${dispositivo}  
-• ⁠⁠⁠⁠⁠⁠⁠₊⊹ ${garantia}
-• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Respuesta de reportes de *24 a 72 hrs*
-· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·
-🌸 DUDAS 🌸
-*Con el admin en turno* por privado no al grupo.
-· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·`;
-}
+    texto =
+      "꧁🌸 Sarita Shop 🌸꧂\n" +
+      "· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·\n" +
+      "❤️ " + info.nombre + " ❤️\n" +
+      "💌 " + email + "\n" +
+      lineaContrasena + "\n" +
+      lineaPerfil + "\n" +
+      "📤 Entrega: " + fecha + "\n" +
+      "· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·\n" +
+      "🌸Códigos🌸\n" +
+      "https://chat.whatsapp.com/FLv1Dol35LQCMGhf9oVDnV\n" +
+      "· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·\n" +
+      "🌸REPORTES🌸\n" +
+      "https://saritashop.nvg.mx/\n" +
+      "· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·\n" +
+      "• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Confirma tu acceso en 10 minutos\n" +
+      "• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Manda captura que ya accediste *(o no habrá garantía)*\n" +
+      "• ⁠⁠⁠⁠⁠⁠⁠₊⊹ No cambiar correo ni contraseña\n" +
+      "• ⁠⁠⁠⁠⁠⁠⁠₊⊹ No modificar facturación\n" +
+      "• ⁠⁠⁠⁠⁠⁠⁠₊⊹ " + dispositivo + "\n" +
+      "• ⁠⁠⁠⁠⁠⁠⁠₊⊹ " + garantia + "\n" +
+      "• ⁠⁠⁠⁠⁠⁠⁠₊⊹ Respuesta de reportes de *24 a 72 hrs*\n" +
+      "· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·\n" +
+      "🌸 DUDAS 🌸\n" +
+      "*Con el admin en turno* por privado no al grupo.\n" +
+      "· · ─ ·𖥸· ─ ·  • ·· · ─ ·𖥸· ─ · ·";
 
-document.querySelectorAll("input").forEach(i=>{
-i.oninput=()=>{
-crearPerfiles();
-generar();
-};
-});
+    salida.textContent = texto;
+  }
 
-copiarBtn.onclick=()=>{
-navigator.clipboard.writeText(salida.textContent);
-copiarBtn.textContent="✅ Copiado";
-setTimeout(()=>copiarBtn.textContent="📋 Copiar todo",1500);
-};
+  function actualizar(){
+    actualizarEspeciales();
+    pintarBotones();
+    generar();
+  }
 
-crearPerfiles();
+  plataforma.addEventListener("change",actualizar);
+  tipo.addEventListener("input",actualizar);
+  correo.addEventListener("input",generar);
+  contrasena.addEventListener("input",generar);
+
+  perfilBtns.addEventListener("click",function(evento){
+    var objetivo = evento.target;
+    var numero;
+
+    if(objetivo.tagName !== "BUTTON"){
+      return;
+    }
+
+    numero = parseInt(objetivo.getAttribute("data-perfil"),10);
+
+    if(!isNaN(numero)){
+      perfilElegido = numero;
+      pintarBotones();
+      generar();
+    }
+  });
+
+  copiar.addEventListener("click",function(){
+    var area = document.createElement("textarea");
+    area.value = salida.textContent;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand("copy");
+    document.body.removeChild(area);
+
+    copiar.textContent = "✅ Copiado";
+    setTimeout(function(){
+      copiar.textContent = "📋 Copiar todo";
+    },1500);
+  });
+
+  actualizar();
+})();
 </script>
-
 </body>
 </html>
